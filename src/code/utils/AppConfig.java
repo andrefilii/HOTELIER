@@ -31,4 +31,12 @@ public class AppConfig {
     public static Integer getMaxUsers() throws NumberFormatException{
         return Integer.parseInt(properties.getProperty("application.maxUsers", "100"));
     }
+
+    public static Integer getDatabaseUpdatePeriod() throws NumberFormatException {
+        return Integer.parseInt(properties.getProperty("database.updatePeriod", "60"));
+    }
+
+    public static Integer getRatingsUpdatePeriod() throws NumberFormatException {
+        return Integer.parseInt(properties.getProperty("application.ratingUpdatePeriod", "60"));
+    }
 }

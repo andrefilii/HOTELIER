@@ -26,8 +26,12 @@ public class PasswordUtils {
 
     }
 
-    public static boolean checkPassword(String clientHash, String serverHash) {
-        return clientHash.equals(serverHash);
+    public static boolean checkPassword(String password, String hash) {
+        try {
+            return hashPassword(password).equals(hash);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
 }
