@@ -5,12 +5,14 @@ public class UserReview {
     private Integer hotelID;
     private Double rating;
     private Ratings ratings;
+    private Long timestamp;
 
-    public UserReview(String username, Integer hotelID, Double rating, Ratings ratings) {
+    public UserReview(String username, Integer hotelID, Double rating, Ratings ratings, long timestamp) {
         this.username = username;
         this.hotelID = hotelID;
         this.rating = rating;
         this.ratings = ratings;
+        this.timestamp = timestamp;
     }
 
     public String getUsername() {
@@ -43,5 +45,13 @@ public class UserReview {
 
     public void setRatings(Ratings ratings) {
         this.ratings = ratings;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

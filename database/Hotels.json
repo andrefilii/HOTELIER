@@ -407,7 +407,8 @@
             "position": 0,
             "services": 0,
             "quality": 0
-        }
+        },
+        "rank": 12
     },
     {
         "id": 22,
@@ -429,7 +430,8 @@
             "position": 0,
             "services": 0,
             "quality": 0
-        }
+        },
+        "rank": 1
     },
     {
         "id": 23,
@@ -552,7 +554,8 @@
             "position": 0,
             "services": 0,
             "quality": 0
-        }
+        },
+        "rank": 5
     },
     {
         "id": 29,

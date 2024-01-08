@@ -1,24 +1,14 @@
 [
   {
-    "username": "ciccio",
+    "username": "chicco",
     "hotelID": 22,
-    "rating": 3.5,
+    "rating": 5.0,
     "ratings": {
-      "cleaning": 1.3,
-      "position": 4.5,
-      "services": 3.5,
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
       "quality": 5.0
-    }
-  },
-  {
-    "username": "ciccione",
-    "hotelID": 21,
-    "rating": 3.5,
-    "ratings": {
-      "cleaning": 1.3,
-      "position": 4.5,
-      "services": 3.5,
-      "quality": 5.0
-    }
+    },
+    "timestamp": 1704745534624
   }
 ]

@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -158,6 +159,7 @@ public class DatabaseManager {
         return hotels.values()
                 .stream()
                 .filter(h -> h.getCity().equals(citta))
+                .sorted(Comparator.comparingInt(Hotel::getRank))
                 .collect(Collectors.toList());
     }
 
@@ -166,6 +168,10 @@ public class DatabaseManager {
         isRatingsListModified.set(true);
         getUserByUsername(review.getUsername()).addRecensione();
         isUserListModified.set(true);
+    }
+
+    public List<UserReview> getHotelReviews(Integer hotelID) {
+        return reviews.values().stream().filter(r -> r.getHotelID().equals(hotelID)).collect(Collectors.toList());
     }
 
     private String getReviewMapKey(UserReview review) {

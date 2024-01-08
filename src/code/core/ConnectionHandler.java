@@ -7,11 +7,9 @@ import code.exceptions.IncorrectPasswordException;
 import code.exceptions.UserAlreadyLoggedException;
 import code.exceptions.UserNotFoundException;
 import code.exceptions.UsernameConflictException;
+import code.utils.AppConfig;
 import code.utils.DatabaseManager;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -20,6 +18,7 @@ import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * @author Andrea Filippi
@@ -85,15 +84,20 @@ public class ConnectionHandler implements Runnable{
     }
 
     /**
-     * Metodo che gestisce una richiesta di login da parte di un client. Il metodo si aspetta di ricevere una stringa
-     * rappresentante un oggetto json formato così: {"username":"","password":""}.<br>
-     *
+     * Metodo che gestisce una richiesta di login da parte di un client
+     * Il metodo si aspetta di ricevere una stringa rappresentante un oggetto json formato così:<br>
+     * {
+     *  "username":"",<br>
+     *  "password":"",<br>
+     * }<br><br>
      *
      * @param bodyString il corpo della richiesta che conterrà l'oggetto json
-     * @return - "200 OK" se il login è effettuato con successo<br>
+     * @return - "200 OK" se il login è effettuato con successo. Viene inviato anche un oggetto json contenente il
+     * gruppo multicast per ricevere aggiornamenti sui ranking locali<br>
      * - "409 CONFLICT" se l'utente è già loggato sul server<br>
      * - "404 NOT FOUND" se non viene trovato nessun utente con lo username passato<br>
      * - "401 UNAUTHORIZED" se le credenziali passate sono errate
+     * - "400 BAD REQUEST" se l'oggetto non contiene le proprietà richieste
      *
      * @see ServerManager#loginUser(String, String)
      */
@@ -120,7 +124,13 @@ public class ConnectionHandler implements Runnable{
         try {
             // effettuo il login sul server e se ha successo salvo l'utente loggato sulla connessione in this.curUser
             curUser = serverManager.loginUser(username, password);
-            return "200 OK";
+
+            // cro l'oggetto contenente le informazioni necessarie per iscriversi al gruppo multicast per il ranking
+            JsonObject multicast = new JsonObject();
+            multicast.addProperty("group", AppConfig.getMulticastGroup());
+            multicast.addProperty("port", AppConfig.getMulticastPort());
+
+            return "200 OK\n" + gson.toJson(multicast) + "\n";
         } catch (UserAlreadyLoggedException e) {
             return "409 CONFLICT";
         } catch (UserNotFoundException e) {
@@ -155,6 +165,8 @@ public class ConnectionHandler implements Runnable{
         } catch (NullPointerException e) {
             return "400 BAD REQUEST";
         }
+
+        if (curUser == null || !curUser.getUsername().equals(username)) return "401 UNAUTHORIZED";
 
         serverManager.logout(username);
         curUser = null;
@@ -193,7 +205,7 @@ public class ConnectionHandler implements Runnable{
         Hotel h = databaseManager.getHotelByNameAndCity(nomeHotel, citta);
         if (h == null) return "404 NOT FOUND";
 
-        return "200 OK\n" + gson.toJson(h) + "\n\n";
+        return "200 OK\n" + gson.toJson(h);
     }
 
     /**
@@ -227,7 +239,7 @@ public class ConnectionHandler implements Runnable{
 
         Type typeHotel = new TypeToken<List<Hotel>>(){}.getType();
 
-        return "200 OK\n" + gson.toJson(h, typeHotel) + "\n";
+        return "200 OK\n" + gson.toJson(h, typeHotel);
     }
 
     /**
@@ -341,6 +353,7 @@ public class ConnectionHandler implements Runnable{
         try (Scanner in = new Scanner(socket.getInputStream());
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
             while (in.hasNextLine()) {
+                System.out.println("comando preso");
                 // legge il comando
                 String command = in.nextLine().trim();
                 // legge il corpo se presente
@@ -373,7 +386,7 @@ public class ConnectionHandler implements Runnable{
                         response = "400 BAD REQUEST";
                 }
 
-                out.println(response);
+                out.println(response + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -14,6 +14,7 @@ public class Hotel implements Serializable {
     private List<String> services;
     private Double rate;
     private Ratings ratings;
+    private Integer rank = 0;
 
     public Integer getId() {
         return id;
@@ -77,6 +78,14 @@ public class Hotel implements Serializable {
 
     public void setRatings(Ratings ratings) {
         this.ratings = ratings;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
     }
 
     @Override
