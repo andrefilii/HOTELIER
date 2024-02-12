@@ -10,6 +10,13 @@ public class Ratings implements Serializable {
     private Double services;
     private Double quality;
 
+    public Ratings(Double cleaning, Double position, Double services, Double quality) {
+        this.cleaning = cleaning;
+        this.position = position;
+        this.services = services;
+        this.quality = quality;
+    }
+
     public Double getCleaning() {
         return cleaning;
     }

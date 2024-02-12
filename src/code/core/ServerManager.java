@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -51,10 +52,10 @@ public class ServerManager {
     }
 
     private void updateRatings() {
-        // TODO aggiorna il rating
-        // ...
-        // if (<prima posizione cambia>) {
-        if (true) {
+        /* Aggiorno i ranking e, se cambiano, prendo le nuove prime posizioni*/
+        HashMap<String, Hotel> newFirstPositions = databaseManager.updateLocalRankings();
+
+        if (!newFirstPositions.isEmpty()) {
             try {
                 // TODO il datagramma diventerà un oggetto json con il primo classificato
                 DatagramPacket packet = new DatagramPacket("hello".getBytes(), "hello".getBytes().length, group, AppConfig.getMulticastPort());
