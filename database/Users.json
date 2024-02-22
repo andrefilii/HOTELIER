@@ -1,8 +1,18 @@
 [
   {
+    "username": "aaa",
+    "password": "9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
+    "numRecensioni": 4
+  },
+  {
     "username": "chicco",
     "password": "c8b503c9f7396e8154f8205e43b5b481bfcd8123325035ef315f13317b4266e1",
     "numRecensioni": 3
+  },
+  {
+    "username": "stella",
+    "password": "f9860d4c1fe72330e750bb2a1310337fc35022f31a0c625fd792930f4dc3e00c",
+    "numRecensioni": 0
   },
   {
     "username": "ciccione",
@@ -18,5 +28,10 @@
     "username": "ciccio",
     "password": "b78fa902d7db00f4a1e379899567bb187a896ffd575fedd7d4c0cf7f414cd9f7",
     "numRecensioni": 51
+  },
+  {
+    "username": "user",
+    "password": "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb",
+    "numRecensioni": 3
   }
 ]

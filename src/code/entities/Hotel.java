@@ -18,8 +18,17 @@ public class Hotel implements Serializable {
     private Integer numRecensioni = 0;
 
     // serve solo per il calcolo dei rank, non deve essere salvato e nemmeno visibile quando trasmesso al client
-    private transient Double rankValue = 0.0;
+    private transient Double rankValue = null;
+    private transient Long distanzaUltimaRecensione = null;
 
+
+    public void setDistanzaUltimaRecensione(Long distanzaUltimaRecensione) {
+        this.distanzaUltimaRecensione = distanzaUltimaRecensione;
+    }
+
+    public Long getDistanzaUltimaRecensione() {
+        return distanzaUltimaRecensione;
+    }
 
     public Double getRankValue() {
         return rankValue;

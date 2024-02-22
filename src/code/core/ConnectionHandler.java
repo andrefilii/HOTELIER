@@ -130,7 +130,7 @@ public class ConnectionHandler implements Runnable{
             multicast.addProperty("group", AppConfig.getMulticastGroup());
             multicast.addProperty("port", AppConfig.getMulticastPort());
 
-            return "200 OK\n" + gson.toJson(multicast) + "\n";
+            return "200 OK\n" + gson.toJson(multicast);
         } catch (UserAlreadyLoggedException e) {
             return "409 CONFLICT";
         } catch (UserNotFoundException e) {

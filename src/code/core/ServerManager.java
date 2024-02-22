@@ -10,12 +10,17 @@ import code.exceptions.UserNotFoundException;
 import code.utils.AppConfig;
 import code.utils.DatabaseManager;
 import code.utils.PasswordUtils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -29,9 +34,11 @@ public class ServerManager {
     private InetAddress group;
     private ConcurrentHashMap<String, User> loggedUsers = new ConcurrentHashMap<>();
 
+    private Gson gson;
+
     private ServerManager() {
         databaseManager = DatabaseManager.getInstance();
-
+        gson = new GsonBuilder().setPrettyPrinting().create();
         initBackgroundUpdater();
     }
 
@@ -56,11 +63,22 @@ public class ServerManager {
         HashMap<String, Hotel> newFirstPositions = databaseManager.updateLocalRankings();
 
         if (!newFirstPositions.isEmpty()) {
+            // costruisco il json con le nuove prime posizioni
+            JsonArray jsonArray = new JsonArray();
+            for (Map.Entry<String, Hotel> entry : newFirstPositions.entrySet()) {
+                JsonObject obj = new JsonObject();
+                obj.addProperty("citta", entry.getKey());
+                obj.addProperty("nomeHotel", entry.getValue().getName());
+
+                jsonArray.add(obj);
+            }
+
+            String message = gson.toJson(jsonArray);
+
             try {
-                // TODO il datagramma diventerà un oggetto json con il primo classificato
-                DatagramPacket packet = new DatagramPacket("hello".getBytes(), "hello".getBytes().length, group, AppConfig.getMulticastPort());
+                DatagramPacket packet = new DatagramPacket(message.getBytes(), message.getBytes().length, group, AppConfig.getMulticastPort());
                 ms.send(packet);
-                System.out.println("Classifica aggiornata, inviata correttamente notifica ai client connessi");
+                System.out.println("Classifica aggiornata, inviata correttamente notifica ai client connessi. Messaggio:\n" + message);
             } catch (IOException e) {
                 e.printStackTrace();
             }

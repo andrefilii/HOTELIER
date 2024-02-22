@@ -10,5 +10,41 @@
       "quality": 5.0
     },
     "timestamp": 1704745534624
+  },
+  {
+    "username": "user",
+    "hotelID": 3,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708276784858
+  },
+  {
+    "username": "user",
+    "hotelID": 2,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708276681063
+  },
+  {
+    "username": "aaa",
+    "hotelID": 68,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708611557644
   }
 ]
