@@ -1,10 +1,12 @@
-package code.utils;
+package code.core;
 
 import code.entities.Hotel;
 import code.entities.Ratings;
 import code.entities.User;
 import code.entities.UserReview;
 import code.exceptions.UsernameConflictException;
+import code.utils.AppConfig;
+import code.utils.PasswordUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -71,7 +73,7 @@ public class DatabaseManager {
             // se il file degli Utenti non esiste ancora, lo creo
             try {
                 if (!file.createNewFile()) {
-                    System.out.println("--- Errore durante la creazione di Users.json");
+                    System.out.println("--- Errore durante la creazione di Users.json ---");
                 }
             } catch (IOException e) {
                 System.out.println("--- Errore durante la creazione di Users.json ---");
@@ -125,7 +127,7 @@ public class DatabaseManager {
             // se il file degli Utenti non esiste ancora, lo creo
             try {
                 if (!file.createNewFile()) {
-                    System.out.println("--- Errore durante la creazione di Ratings.json");
+                    System.out.println("--- Errore durante la creazione di Ratings.json ---");
                 }
             } catch (IOException e) {
                 System.out.println("--- Errore durante la creazione di Ratings.json ---");
@@ -224,18 +226,20 @@ public class DatabaseManager {
      * @throws NullPointerException se i parametri passati sono vuoti o null
      */
     public User registerUser(String username, String password) throws UsernameConflictException, NullPointerException {
-        if (username == null || password == null || username.isEmpty() || password.isEmpty()) throw new NullPointerException();
+        if (username == null || password == null || username.trim().isEmpty() || password.trim().isEmpty()) throw new NullPointerException();
         if (users.containsKey(username)) throw new UsernameConflictException();
-        else { // TODO probabilmente da mettere in un computeIfAbsent
-            User user = new User();
-            user.setUsername(username);
-            user.setPassword(PasswordUtils.hashPassword(password));
-
-            users.put(username, user);
+        else {
+            // inserisco l'utente e lo faccio in modo atomico
+            users.computeIfAbsent(username, (k) -> {
+                User user = new User();
+                user.setUsername(username);
+                user.setPassword(PasswordUtils.hashPassword(password));
+                return user;
+            });
 
             this.isUserListModified.set(true);
 
-            return user;
+            return users.get(username);
         }
     }
 
@@ -326,7 +330,11 @@ public class DatabaseManager {
         return reviews.values().stream().filter(r -> r.getHotelID().equals(hotelID)).collect(Collectors.toList());
     }
 
-
+    /**
+     * Crea la chiave per la mappa delle recensioni, in questo modo si può trovare velocemente una recensione dato l'utente e l'hotel
+     * @param review la recensione che contiene i dati per creare la chiave
+     * @return la chiave creata, con la forma {@literal <}username{@literal >}_{@literal <}hotelID{@literal >}
+     */
     private String getReviewMapKey(UserReview review) {
         return review.getUsername() + "_" + review.getHotelID();
     }

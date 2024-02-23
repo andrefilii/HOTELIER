@@ -8,7 +8,6 @@ import code.exceptions.IncorrectPasswordException;
 import code.exceptions.UserAlreadyLoggedException;
 import code.exceptions.UserNotFoundException;
 import code.utils.AppConfig;
-import code.utils.DatabaseManager;
 import code.utils.PasswordUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

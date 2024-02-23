@@ -24,6 +24,18 @@
     "timestamp": 1708276784858
   },
   {
+    "username": "aaa",
+    "hotelID": 66,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708612084923
+  },
+  {
     "username": "user",
     "hotelID": 2,
     "rating": 5.0,
@@ -45,6 +57,6 @@
       "services": 5.0,
       "quality": 5.0
     },
-    "timestamp": 1708611557644
+    "timestamp": 1708611929778
   }
 ]

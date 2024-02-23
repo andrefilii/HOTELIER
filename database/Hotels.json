@@ -1351,7 +1351,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 2,
+    "rank": 3,
     "numRecensioni": 0
   },
   {
@@ -1376,7 +1376,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 3,
+    "rank": 4,
     "numRecensioni": 0
   },
   {
@@ -1395,7 +1395,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 4,
+    "rank": 5,
     "numRecensioni": 0
   },
   {
@@ -1417,7 +1417,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 5,
+    "rank": 6,
     "numRecensioni": 0
   },
   {
@@ -1437,7 +1437,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 6,
+    "rank": 7,
     "numRecensioni": 0
   },
   {
@@ -1452,14 +1452,14 @@
       "Palestra",
       "Sauna"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
     },
-    "rank": 7,
+    "rank": 1,
     "numRecensioni": 0
   },
   {
@@ -1495,14 +1495,14 @@
       "Paga in struttura",
       "TV in camera"
     ],
-    "rate": 5.0,
+    "rate": 0.0,
     "ratings": {
-      "cleaning": 5.0,
-      "position": 5.0,
-      "services": 5.0,
-      "quality": 5.0
+      "cleaning": 0.0,
+      "position": 0.0,
+      "services": 0.0,
+      "quality": 0.0
     },
-    "rank": 1,
+    "rank": 2,
     "numRecensioni": 0
   },
   {

@@ -8,7 +8,6 @@ import code.exceptions.UserAlreadyLoggedException;
 import code.exceptions.UserNotFoundException;
 import code.exceptions.UsernameConflictException;
 import code.utils.AppConfig;
-import code.utils.DatabaseManager;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
@@ -18,7 +17,6 @@ import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 /**
  * @author Andrea Filippi
