@@ -2,7 +2,7 @@
   {
     "username": "aaa",
     "password": "9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
-    "numRecensioni": 6
+    "numRecensioni": 15
   },
   {
     "username": "chicco",
@@ -13,6 +13,11 @@
     "username": "stella",
     "password": "f9860d4c1fe72330e750bb2a1310337fc35022f31a0c625fd792930f4dc3e00c",
     "numRecensioni": 0
+  },
+  {
+    "username": "bbb",
+    "password": "3e744b9dc39389baf0c5a0660589b8402f3dbb49b89b3e75f2c9355852a3c677",
+    "numRecensioni": 3
   },
   {
     "username": "ciccione",

@@ -57,6 +57,11 @@ public class ServerManager {
         }
     }
 
+    /**
+     * Funzione chiamata periodicamente in background per aggiornare i ranking locali
+     * Chiama la funzione di aggiornamento in DatabaseManager e, se ci sono cambiamenti, crea un array json contenente
+     * le nuove prime posizioni da spedire a tutti i client in ascolto sul gruppo multicast
+     */
     private void updateRatings() {
         /* Aggiorno i ranking e, se cambiano, prendo le nuove prime posizioni*/
         HashMap<String, Hotel> newFirstPositions = databaseManager.updateLocalRankings();
@@ -96,6 +101,15 @@ public class ServerManager {
         return loggedUsers.get(username);
     }
 
+    /**
+     * Permette il login di un utente sul servizio
+     * @param username username dell'utente
+     * @param password password (in chiaro) passata al server
+     * @return l'utente loggato correttamente
+     * @throws UserNotFoundException se non esiste nessun utente nel database con lo username passato
+     * @throws UserAlreadyLoggedException se l'utente è già loggato sul server
+     * @throws IncorrectPasswordException se l'utente esiste, ma la password è incorretta
+     */
     public User loginUser(String username, String password) throws UserNotFoundException, UserAlreadyLoggedException, IncorrectPasswordException{
         User user = databaseManager.getUserByUsername(username);
 
@@ -112,6 +126,14 @@ public class ServerManager {
         loggedUsers.remove(username);
     }
 
+    /**
+     * Permette di inserire una recensione per un hotel
+     * @param user
+     * @param nomeHotel
+     * @param citta
+     * @param globalScore
+     * @param ratings
+     */
     public void insertReview(User user, String nomeHotel, String citta, Double globalScore, Ratings ratings) {
         Hotel hotel = databaseManager.getHotelByNameAndCity(nomeHotel, citta);
         if (hotel == null) throw new NullPointerException();

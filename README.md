@@ -1,2 +1,1 @@
-# HOTELIER
-HOTELIER: an HOTEL advIsor sERvice
+# HOTELIER: an HOTEL advIsor sERvice

@@ -277,7 +277,9 @@ public class DatabaseManager {
 
     /**
      * Permette di inserire una recensione riguardante un hotel. Aggiorna inoltre le medie per quell'hotel e aggiorna il numero
-     * di recensioni riguardanti questo utente
+     * di recensioni riguardanti questo utente.<br>
+     * NB: un utente può inserire solo una recensione per un determinato hotel, se prova a inserirne una nuova, quella vecchia
+     * viene sovrascritta
      * @param review recensione da inserire
      */
     public void insertReview(UserReview review) {
@@ -358,14 +360,8 @@ public class DatabaseManager {
                     // prima di riordinare prendo il primo hotel (potrebbe cambiare)
                     Hotel oldFirstPos = list.get(0);
 
-                    // non serve re-inserire gli hotel nella lista perchè puntano agli stessi oggetti nella mappa 'hotel' (quindi sono automaticamente aggiornati)
-                    // ordino in base alle medie calcolate, se sono uguali ordino per la media delle date e infinte in ordine di Id
-//                    list.sort(
-//                            Comparator.comparing(Hotel::getRankValue, Comparator.nullsFirst(Comparator.reverseOrder()))
-//                                    .thenComparing(Hotel::getDistanzaUltimaRecensione, Comparator.nullsLast(Comparator.naturalOrder()))
-//                                    .thenComparingInt(Hotel::getId)
-//                    );
-
+                    // non serve re-inserire gli hotel nella lista perché puntano agli stessi oggetti nella mappa 'hotel' (quindi sono automaticamente aggiornati)
+                    // ordino in base alle medie calcolate, se sono uguali ordino per recensione più recente e infine in ordine di Id
                     list.sort((h1, h2) -> {
                         Double h1Rank = h1.getRankValue();
                         Double h2Rank = h2.getRankValue();
@@ -437,9 +433,12 @@ public class DatabaseManager {
                     sumPesi += 1.0/diffDays;
                 }
 
-                // calcolo la media pesata a cui aggiungo il numero di recensioni (a parità di media preferisco quelle con più recensioni)
-                hotel.setRankValue( (sumValori/sumPesi) + hotelReviews.size() );
+                double media = (sumValori/sumPesi);
+                // per risolvere problemi con la precisione di macchina, se la media contiene riporti in fondo, normalizzo a 5.0
+                if (Double.compare(media, 5.0) > 0) media = 5.0;
 
+                // calcolo la media pesata a cui aggiungo il numero di recensioni (a parità di media preferisco quelle con più recensioni)
+                hotel.setRankValue( media + hotelReviews.size() );
 
                 hotel.setDistanzaUltimaRecensione(minDiffDays);
             } else {
