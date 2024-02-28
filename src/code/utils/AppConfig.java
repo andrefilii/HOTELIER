@@ -24,10 +24,8 @@ public class AppConfig {
         return Integer.parseInt(properties.getProperty("port", "800"));
     }
 
-    public static String getDatabaseUrl() throws NullPointerException{
-        String url = properties.getProperty("database.url");
-        if (url == null) throw new NullPointerException("Property 'database.url' can't be null");
-        return url;
+    public static String getDatabaseUrl() {
+        return properties.getProperty("database.url", "./");
     }
 
     public static Integer getMaxUsers() throws NumberFormatException{

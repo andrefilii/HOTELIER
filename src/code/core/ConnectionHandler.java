@@ -390,6 +390,7 @@ public class ConnectionHandler implements Runnable{
             e.printStackTrace();
         }
 
+        // se il client si disconnette mentre era loggato, eseguo il logout
         if (curUser != null) {
             serverManager.logout(curUser.getUsername());
         }

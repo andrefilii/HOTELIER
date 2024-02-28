@@ -12,6 +12,30 @@
     "timestamp": 1708885645906
   },
   {
+    "username": "bbb",
+    "hotelID": 182,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709059410618
+  },
+  {
+    "username": "bbb",
+    "hotelID": 183,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709059382719
+  },
+  {
     "username": "chicco",
     "hotelID": 22,
     "rating": 5.0,
@@ -22,54 +46,6 @@
       "quality": 5.0
     },
     "timestamp": 1704745534624
-  },
-  {
-    "username": "user",
-    "hotelID": 3,
-    "rating": 5.0,
-    "ratings": {
-      "cleaning": 5.0,
-      "position": 5.0,
-      "services": 5.0,
-      "quality": 5.0
-    },
-    "timestamp": 1708276784858
-  },
-  {
-    "username": "aaa",
-    "hotelID": 66,
-    "rating": 5.0,
-    "ratings": {
-      "cleaning": 5.0,
-      "position": 5.0,
-      "services": 5.0,
-      "quality": 5.0
-    },
-    "timestamp": 1708612084923
-  },
-  {
-    "username": "user",
-    "hotelID": 2,
-    "rating": 5.0,
-    "ratings": {
-      "cleaning": 5.0,
-      "position": 5.0,
-      "services": 5.0,
-      "quality": 5.0
-    },
-    "timestamp": 1708276681063
-  },
-  {
-    "username": "aaa",
-    "hotelID": 198,
-    "rating": 5.0,
-    "ratings": {
-      "cleaning": 5.0,
-      "position": 4.0,
-      "services": 5.0,
-      "quality": 4.0
-    },
-    "timestamp": 1708880929116
   },
   {
     "username": "aaa",
@@ -97,15 +73,15 @@
   },
   {
     "username": "aaa",
-    "hotelID": 68,
+    "hotelID": 181,
     "rating": 5.0,
     "ratings": {
-      "cleaning": 5.0,
-      "position": 5.0,
-      "services": 5.0,
-      "quality": 5.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "timestamp": 1708611929778
+    "timestamp": 1709059466174
   },
   {
     "username": "aaa",
@@ -118,6 +94,162 @@
       "quality": 3.0
     },
     "timestamp": 1708881796749
+  },
+  {
+    "username": "aaa",
+    "hotelID": 68,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708611929778
+  },
+  {
+    "username": "aaa",
+    "hotelID": 69,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709057690454
+  },
+  {
+    "username": "ccc",
+    "hotelID": 64,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709057883437
+  },
+  {
+    "username": "ccc",
+    "hotelID": 67,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709057841960
+  },
+  {
+    "username": "aaa",
+    "hotelID": 62,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709059335270
+  },
+  {
+    "username": "aaa",
+    "hotelID": 85,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709059480447
+  },
+  {
+    "username": "bbb",
+    "hotelID": 35,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709060774779
+  },
+  {
+    "username": "user",
+    "hotelID": 3,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708276784858
+  },
+  {
+    "username": "aaa",
+    "hotelID": 66,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708612084923
+  },
+  {
+    "username": "bbb",
+    "hotelID": 84,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709060693387
+  },
+  {
+    "username": "user",
+    "hotelID": 2,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 5.0,
+      "services": 5.0,
+      "quality": 5.0
+    },
+    "timestamp": 1708276681063
+  },
+  {
+    "username": "bbb",
+    "hotelID": 83,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
+    },
+    "timestamp": 1709060711061
+  },
+  {
+    "username": "aaa",
+    "hotelID": 198,
+    "rating": 5.0,
+    "ratings": {
+      "cleaning": 5.0,
+      "position": 4.0,
+      "services": 5.0,
+      "quality": 4.0
+    },
+    "timestamp": 1708880929116
   },
   {
     "username": "bbb",

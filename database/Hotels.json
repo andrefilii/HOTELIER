@@ -672,7 +672,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 1,
+    "rank": 2,
     "numRecensioni": 0
   },
   {
@@ -692,7 +692,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 2,
+    "rank": 3,
     "numRecensioni": 0
   },
   {
@@ -719,7 +719,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 3,
+    "rank": 4,
     "numRecensioni": 0
   },
   {
@@ -744,7 +744,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 4,
+    "rank": 5,
     "numRecensioni": 0
   },
   {
@@ -760,14 +760,14 @@
       "Paga in struttura",
       "Sauna"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 5,
+    "rank": 1,
     "numRecensioni": 0
   },
   {
@@ -1351,7 +1351,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 3,
+    "rank": 7,
     "numRecensioni": 0
   },
   {
@@ -1369,14 +1369,14 @@
       "Sauna",
       "Wi-Fi"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 4,
+    "rank": 1,
     "numRecensioni": 0
   },
   {
@@ -1395,7 +1395,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 5,
+    "rank": 8,
     "numRecensioni": 0
   },
   {
@@ -1410,14 +1410,14 @@
       "Cancellazione gratuita",
       "TV in camera"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 6,
+    "rank": 2,
     "numRecensioni": 0
   },
   {
@@ -1437,7 +1437,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 7,
+    "rank": 9,
     "numRecensioni": 0
   },
   {
@@ -1459,7 +1459,7 @@
       "services": 5.0,
       "quality": 5.0
     },
-    "rank": 1,
+    "rank": 5,
     "numRecensioni": 0
   },
   {
@@ -1469,14 +1469,14 @@
     "city": "Udine",
     "phone": "387-8334625",
     "services": [],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 8,
+    "rank": 3,
     "numRecensioni": 0
   },
   {
@@ -1502,7 +1502,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 2,
+    "rank": 6,
     "numRecensioni": 0
   },
   {
@@ -1516,14 +1516,14 @@
       "Paga in struttura",
       "Frigo in camera"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 9,
+    "rank": 4,
     "numRecensioni": 0
   },
   {
@@ -1795,7 +1795,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 1,
+    "rank": 4,
     "numRecensioni": 0
   },
   {
@@ -1812,7 +1812,7 @@
       "services": 0.0,
       "quality": 0.0
     },
-    "rank": 2,
+    "rank": 5,
     "numRecensioni": 0
   },
   {
@@ -1827,14 +1827,14 @@
       "TV in camera",
       "Cancellazione gratuita"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 3,
+    "rank": 1,
     "numRecensioni": 0
   },
   {
@@ -1844,14 +1844,14 @@
     "city": "Firenze",
     "phone": "330-7174828",
     "services": [],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 4,
+    "rank": 2,
     "numRecensioni": 0
   },
   {
@@ -1863,14 +1863,14 @@
     "services": [
       "Sauna"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 5,
+    "rank": 3,
     "numRecensioni": 0
   },
   {
@@ -4039,14 +4039,14 @@
       "Servizio in camera",
       "Cancellazione gratuita"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 2,
+    "rank": 1,
     "numRecensioni": 0
   },
   {
@@ -4064,14 +4064,14 @@
       "Cancellazione gratuita",
       "Posto auto"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 3,
+    "rank": 2,
     "numRecensioni": 0
   },
   {
@@ -4087,14 +4087,14 @@
       "Servizio in camera",
       "Palestra"
     ],
-    "rate": 0.0,
+    "rate": 5.0,
     "ratings": {
-      "cleaning": 0.0,
-      "position": 0.0,
-      "services": 0.0,
-      "quality": 0.0
+      "cleaning": 4.0,
+      "position": 3.0,
+      "services": 4.0,
+      "quality": 3.0
     },
-    "rank": 4,
+    "rank": 3,
     "numRecensioni": 0
   },
   {
@@ -4113,7 +4113,7 @@
       "services": 5.0,
       "quality": 3.0
     },
-    "rank": 1,
+    "rank": 4,
     "numRecensioni": 0
   },
   {

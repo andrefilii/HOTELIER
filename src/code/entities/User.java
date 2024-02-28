@@ -41,7 +41,7 @@ public class User implements Serializable {
     }
 
     public Badges getBadge() {
-        if (numRecensioni > 0 && numRecensioni < 10) return Badges.RECENSORE;
+        if (numRecensioni >= 0 && numRecensioni < 10) return Badges.RECENSORE;
         if (numRecensioni < 20) return Badges.REC_ESPERTO;
         if (numRecensioni < 50) return Badges.CONTRIBUTORE;
         if (numRecensioni < 100) return Badges.CON_ESPERTO;
