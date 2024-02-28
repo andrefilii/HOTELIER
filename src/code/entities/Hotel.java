@@ -15,7 +15,6 @@ public class Hotel implements Serializable {
     private Double rate;
     private Ratings ratings;
     private Integer rank = 0;
-    private Integer numRecensioni = 0;
 
     // serve solo per il calcolo dei rank, non deve essere salvato e nemmeno visibile quando trasmesso al client
     private transient Double rankValue = null;
@@ -110,18 +109,6 @@ public class Hotel implements Serializable {
         this.rank = rank;
     }
 
-    public Integer getNumRecensioni() {
-        return numRecensioni;
-    }
-
-    public void setNumRecensioni(Integer numRecensioni) {
-        this.numRecensioni = numRecensioni;
-    }
-
-    public Integer addRecensione() {
-        return ++this.numRecensioni;
-    }
-
     @Override
     public String toString() {
         return "Hotel{" +
@@ -133,7 +120,6 @@ public class Hotel implements Serializable {
                 ", services=" + services +
                 ", rate=" + rate +
                 ", raitings=" + ratings +
-                ", numRecensioni=" + numRecensioni +
                 '}';
     }
 }

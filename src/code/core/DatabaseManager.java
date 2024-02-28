@@ -172,38 +172,35 @@ public class DatabaseManager {
      * trasforma i valori in json e li salva su disco
      */
     private void persistData() {
-        if (isUserListModified.get()) {
+        if (isUserListModified.getAndSet(false)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             String json = gson.toJson(users.values());
 
             try (FileWriter writer = new FileWriter(AppConfig.getDatabaseUrl()+"Users.json")) {
                 writer.write(json);
-                isUserListModified.set(false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if (isHotelListModified.get()) {
+        if (isHotelListModified.getAndSet(false)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             String json = gson.toJson(hotels.values());
 
             try (FileWriter writer = new FileWriter(AppConfig.getDatabaseUrl()+"Hotels.json")) {
                 writer.write(json);
-                isHotelListModified.set(false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if (isRatingsListModified.get()) {
+        if (isRatingsListModified.getAndSet(false)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             String json = gson.toJson(reviews.values());
 
             try (FileWriter writer = new FileWriter(AppConfig.getDatabaseUrl()+"Reviews.json")) {
                 writer.write(json);
-                isRatingsListModified.set(false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -311,11 +308,18 @@ public class DatabaseManager {
                 quality += ratings.getQuality();
             }
 
-            rate /= numReviews;
-            cleaning /= numReviews;
-            position /= numReviews;
-            services /= numReviews;
-            quality /= numReviews;
+//            rate /= numReviews;
+//            cleaning /= numReviews;
+//            position /= numReviews;
+//            services /= numReviews;
+//            quality /= numReviews;
+//
+            // calcolo le medie e arrotondo a 2 cifre dopo la virgola
+            rate = Math.round(rate/numReviews * 100.0) / 100.0;
+            cleaning = Math.round(cleaning/numReviews * 100.0) / 100.0;
+            position = Math.round(position/numReviews * 100.0) / 100.0;
+            services = Math.round(services/numReviews * 100.0) / 100.0;
+            quality = Math.round(quality/numReviews * 100.0) / 100.0;
 
             Ratings ratings = new Ratings(cleaning, position, services, quality);
 
