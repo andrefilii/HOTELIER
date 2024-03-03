@@ -24,9 +24,16 @@ import java.util.stream.Collectors;
 public class DatabaseManager {
     private static final DatabaseManager instance = new DatabaseManager();
 
+    // chiave -> username
     private final ConcurrentHashMap<String, User> users = new ConcurrentHashMap<>();
+
+    // chiave -> id
     private final ConcurrentHashMap<Integer, Hotel> hotels = new ConcurrentHashMap<>();
+
+    // chiave -> <username_hotelId>
     private final ConcurrentHashMap<String, UserReview> reviews = new ConcurrentHashMap<>();
+
+    // chiave -> città
     private final ConcurrentHashMap<String, List<Hotel>> localRankings = new ConcurrentHashMap<>();
 
     private final AtomicBoolean isUserListModified = new AtomicBoolean(false);

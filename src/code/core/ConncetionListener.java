@@ -5,9 +5,9 @@ import code.utils.AppConfig;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.SocketAddress;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * @author Andrea Filippi
@@ -24,9 +24,28 @@ public class ConncetionListener {
         try(ServerSocket listener = new ServerSocket(AppConfig.getPort())) {
             printApplicationCoordinates();
 
-            ExecutorService pool = Executors.newFixedThreadPool(AppConfig.getMaxUsers());
+            int maxUsers = AppConfig.getMaxUsers();
+
+            /*
+            Thread pool con le seguenti caratteristiche:
+            - devono essere sempre attivi un numero di thread che sia la metà del numero massimo di utenti
+            - il massimo di thread deve essere il numero massimo di utenti
+            - i thread al di fuori del core possono rimanere inattivi per massimo 60 secondi prima di essere eliminati
+            - si usa una SynchronousQueue per indicare che NON possono rimanere task in attesa, se non ci sono thread
+                disponibili, fallisce
+             */
+            ExecutorService pool = new ThreadPoolExecutor((int)Math.ceil(maxUsers/2.0), maxUsers,
+                    60L, TimeUnit.SECONDS,
+                    new SynchronousQueue<>());
+
             while (true) {
-                pool.execute(new ConnectionHandler(listener.accept()));
+                Socket clientSocket = listener.accept();
+                try {
+                    pool.execute(new ConnectionHandler(clientSocket));
+                } catch (RejectedExecutionException e) {
+                    // ho superato il massimo numero di client contemporanei, chiudo la connessione
+                    clientSocket.close();
+                }
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
