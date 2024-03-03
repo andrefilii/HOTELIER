@@ -151,7 +151,7 @@ public class DatabaseManager {
         // creo la hashMap che a come chiave la città e come valore una lista ordinata sul rank degli hotel
         hotels.values().forEach(h ->
                 localRankings.compute(h.getCity(), (k, list) -> {
-                    // se non esiste ancora, creo un treeSet che tiene la collezione ordinata sulla proprietà rank
+                    // se non esiste ancora, creo una lista degli hotel in quella città
                     if (list == null) list = new ArrayList<>();
                     list.add(h);
 

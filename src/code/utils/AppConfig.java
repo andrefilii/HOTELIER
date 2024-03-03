@@ -33,11 +33,11 @@ public class AppConfig {
     }
 
     public static Integer getDatabaseUpdatePeriod() throws NumberFormatException {
-        return Integer.parseInt(properties.getProperty("database.updatePeriod", "60"));
+        return Integer.parseInt(properties.getProperty("database.updatePeriod", "10"));
     }
 
     public static Integer getRatingsUpdatePeriod() throws NumberFormatException {
-        return Integer.parseInt(properties.getProperty("application.ratingUpdatePeriod", "60"));
+        return Integer.parseInt(properties.getProperty("application.ratingUpdatePeriod", "10"));
     }
 
     public static String getMulticastGroup() {

@@ -150,23 +150,9 @@ public class ConnectionHandler implements Runnable{
      * @see ServerManager#logout(String)
      */
     private String logout(String bodyString) {
-        JsonObject body;
-        try {
-            body = toJsonObject(bodyString);
-        } catch (JsonSyntaxException e) {
-            return "400 BAD REQUEST";
-        }
+        if (curUser == null ) return "401 UNAUTHORIZED";
 
-        String username;
-        try {
-            username = body.get("username").getAsString();
-        } catch (NullPointerException e) {
-            return "400 BAD REQUEST";
-        }
-
-        if (curUser == null || !curUser.getUsername().equals(username)) return "401 UNAUTHORIZED";
-
-        serverManager.logout(username);
+        serverManager.logout(curUser.getUsername());
         curUser = null;
 
         return "200 OK";
