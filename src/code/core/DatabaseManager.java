@@ -165,7 +165,7 @@ public class DatabaseManager {
 
 
     /**
-     * Avvia il task che persiste periodicamente le strutture dati. Viene eseguito ogni database.updatePeriod secondi
+     * Avvia il task che persiste periodicamente le strutture dati. Viene eseguito ogni "database.updatePeriod" secondi
      * (proprietà da inserire nel file application.properties, default 60 secondi)
      */
     private void startBackgroundUpdater() {
@@ -231,19 +231,18 @@ public class DatabaseManager {
      */
     public User registerUser(String username, String password) throws UsernameConflictException, NullPointerException {
         if (username == null || password == null || username.trim().isEmpty() || password.trim().isEmpty()) throw new NullPointerException();
-        if (users.containsKey(username)) throw new UsernameConflictException();
-        else {
-            // inserisco l'utente e lo faccio in modo atomico
-            users.computeIfAbsent(username, (k) -> {
-                User user = new User();
-                user.setUsername(username);
-                user.setPassword(PasswordUtils.hashPassword(password));
-                return user;
-            });
 
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(PasswordUtils.hashPassword(password));
+
+        // putIfAbsent permette atomicamente di controllare se esiste già un utente, e nel caso di aggiungerlo
+        if (users.putIfAbsent(username, user) != null ) {
+            // esiste già un utente con lo stesso username => conflitto
+            throw new UsernameConflictException();
+        } else {
             this.isUserListModified.set(true);
-
-            return users.get(username);
+            return user;
         }
     }
 
@@ -315,12 +314,6 @@ public class DatabaseManager {
                 quality += ratings.getQuality();
             }
 
-//            rate /= numReviews;
-//            cleaning /= numReviews;
-//            position /= numReviews;
-//            services /= numReviews;
-//            quality /= numReviews;
-//
             // calcolo le medie e arrotondo a 2 cifre dopo la virgola
             rate = Math.round(rate/numReviews * 100.0) / 100.0;
             cleaning = Math.round(cleaning/numReviews * 100.0) / 100.0;
@@ -361,62 +354,60 @@ public class DatabaseManager {
     public synchronized HashMap<String, Hotel> updateLocalRankings() {
         HashMap<String, Hotel> newFirstPos = new HashMap<>();
 
-        // dovendo fare calcoli e possibili modifiche su ogni hotel, sincronizzo la map degli hotel e delle review per evitare aggiornamenti esterni non voluti
+        // dovendo fare calcoli e possibili modifiche su ogni hotel, sincronizzo la map degli hotel per evitare aggiornamenti esterni non voluti
         // non sincronizzo localRankings perchè questa struttura viene solo acceduta internamente dalla classe nella funzione sincronizzata updateLocalRankings()
-        synchronized (this.reviews) {
-            synchronized (this.hotels) {
-                updateRanks();
+        synchronized (this.hotels) {
+            updateRanks();
 
-                localRankings.forEach((citta, list) -> {
-                    // prima di riordinare prendo il primo hotel (potrebbe cambiare)
-                    Hotel oldFirstPos = list.get(0);
+            localRankings.forEach((citta, list) -> {
+                // prima di riordinare prendo il primo hotel (potrebbe cambiare)
+                Hotel oldFirstPos = list.get(0);
 
-                    // non serve re-inserire gli hotel nella lista perché puntano agli stessi oggetti nella mappa 'hotel' (quindi sono automaticamente aggiornati)
-                    // ordino in base alle medie calcolate, se sono uguali ordino per recensione più recente e infine in ordine di Id
-                    list.sort((h1, h2) -> {
-                        Double h1Rank = h1.getRankValue();
-                        Double h2Rank = h2.getRankValue();
-                        // prima ordino per rankValue DECRESCENTE
-                        if ( (h1Rank != null && (h2Rank == null || (h1Rank > h2Rank) )) ) {
+                // non serve re-inserire gli hotel nella lista perché puntano agli stessi oggetti nella mappa 'hotel' (quindi sono automaticamente aggiornati)
+                // ordino in base alle medie calcolate, se sono uguali ordino per recensione più recente e infine in ordine di Id
+                list.sort((h1, h2) -> {
+                    Double h1Rank = h1.getRankValue();
+                    Double h2Rank = h2.getRankValue();
+                    // prima ordino per rankValue DECRESCENTE
+                    if ( (h1Rank != null && (h2Rank == null || (h1Rank > h2Rank) )) ) {
+                        // h1 > h2
+                        return -1;
+                    } else if ( (h2Rank != null && (h1Rank == null || (h1Rank < h2Rank) )) ) {
+                        // h1 < h2
+                        return 1;
+                    } else {
+                        // h1 == h2
+                        // a parità di rankValue, guardo chi ha la recensione più recente
+                        Long d1 = h1.getDistanzaUltimaRecensione();
+                        Long d2 = h2.getDistanzaUltimaRecensione();
+                        if ( (d1 != null && (d2 == null || (d1 < d2) )) ) {
                             // h1 > h2
                             return -1;
-                        } else if ( (h2Rank != null && (h1Rank == null || (h1Rank < h2Rank) )) ) {
+                        } else if ( (d2 != null && (d1 == null || (d1 > d2) )) ) {
                             // h1 < h2
                             return 1;
                         } else {
-                            // h1 == h2
-                            // a parità di rankValue, guardo chi ha la recensione più recente
-                            Long d1 = h1.getDistanzaUltimaRecensione();
-                            Long d2 = h2.getDistanzaUltimaRecensione();
-                            if ( (d1 != null && (d2 == null || (d1 < d2) )) ) {
-                                // h1 > h2
-                                return -1;
-                            } else if ( (d2 != null && (d1 == null || (d1 > d2) )) ) {
-                                // h1 < h2
-                                return 1;
-                            } else {
-                                // h1 == h2, con stessa distanza di recensioni
-                                // ordino semplicemente per id
-                                return Integer.compare(h1.getId(), h2.getId());
-                            }
+                            // h1 == h2, con stessa distanza di recensioni
+                            // ordino semplicemente per id
+                            return Integer.compare(h1.getId(), h2.getId());
                         }
-                    });
-
-                    // dopo aver ordinato in base alla media pesata, avvaloro il campo rank
-                    for (int i = 0; i < list.size(); i++) {
-                        list.get(i).setRank(i + 1);
-                    }
-
-                    Hotel firstPos = list.get(0);
-
-                    if (firstPos.getId() != oldFirstPos.getId()) {
-                        // la prima posizione è nuova, la aggiungo alla map ritornata
-                        newFirstPos.put(citta, firstPos);
                     }
                 });
 
-                isHotelListModified.set(true);
-            }
+                // dopo aver ordinato in base alla media pesata, avvaloro il campo rank
+                for (int i = 0; i < list.size(); i++) {
+                    list.get(i).setRank(i + 1);
+                }
+
+                Hotel firstPos = list.get(0);
+
+                if (firstPos.getId() != oldFirstPos.getId()) {
+                    // la prima posizione è nuova, la aggiungo alla map ritornata
+                    newFirstPos.put(citta, firstPos);
+                }
+            });
+
+            isHotelListModified.set(true);
         }
 
         return newFirstPos;

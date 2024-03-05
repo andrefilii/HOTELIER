@@ -337,7 +337,7 @@ public class ConnectionHandler implements Runnable{
         try (Scanner in = new Scanner(socket.getInputStream());
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
             while (in.hasNextLine()) {
-                System.out.println("comando preso");
+                System.out.println(Thread.currentThread().getName() + ": comando ricevuto");
                 // legge il comando
                 String command = in.nextLine().trim();
                 // legge il corpo se presente
@@ -371,6 +371,7 @@ public class ConnectionHandler implements Runnable{
                 }
 
                 out.println(response + "\n");
+                System.out.println(Thread.currentThread().getName() + ": risposta inviata");
             }
         } catch (IOException e) {
             e.printStackTrace();
