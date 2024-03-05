@@ -3,16 +3,14 @@ package code.core;
 import code.utils.AppConfig;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.concurrent.*;
 
 /**
  * @author Andrea Filippi
  */
-public class ConncetionListener {
+public class ConnectionListener {
 
     /**
      * Funzione di partenza del server: si mette in ascolto sulla porta specificata in application.properties e crea un

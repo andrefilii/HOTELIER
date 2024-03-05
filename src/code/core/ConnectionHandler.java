@@ -23,7 +23,7 @@ import java.util.Scanner;
  *
  * Questa classe viene utilizzata dal listener quando accetta una connessione per iniziare a ricevere comandi e inviare risposte
  *
- * @see ConncetionListener
+ * @see ConnectionListener
  *
  */
 public class ConnectionHandler implements Runnable{

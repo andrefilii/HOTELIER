@@ -1,6 +1,6 @@
 package code;
 
-import code.core.ConncetionListener;
+import code.core.ConnectionListener;
 import code.utils.AppConfig;
 
 import java.io.File;
@@ -31,6 +31,6 @@ public class ServerMain {
                     "- il file application.properties presente nella stessa cartella del JAR/progetto\n" +
                     "- il file Hotels.json presente nel path specificato dalla propreità database.url nel file application.properties");
         }
-        new ConncetionListener().start();
+        new ConnectionListener().start();
     }
 }
